@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "4fce52af-8591-44d6-a34c-e67248c2c210",
+		"name": "NodeJS_MySQL_DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - List of Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/learners/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"learners",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Item Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/learners/104",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"learners",
+						"104"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Create Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"learner_id\": 0,\r\n    \"learner_name\": \"Test Created User 002\",\r\n    \"learner_email\": \"test2@user.com\",\r\n    \"course_id\": 144\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/learners/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"learners",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Update Item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"learner_id\": 104,\r\n    \"learner_name\": \"Lorem Ipsum\",\r\n    \"learner_email\": \"LI@lorem.ipsum\",\r\n    \"course_id\": 104\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/learners/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"learners",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Remove Item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/learners/104",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"learners",
+						"104"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
