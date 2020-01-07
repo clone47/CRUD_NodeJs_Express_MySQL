@@ -1,6 +1,9 @@
 const mysql = require('mysql');
 const express = require('express');
 const bodyparser = require('body-parser');
+const request = require('request');
+const rp = require('request-promise');
+
 var app = express();
 
 //MySQL details
@@ -85,5 +88,58 @@ app.delete('/learners/:id', (req, res) => {
 
 //Establish the server connection
 //PORT ENVIRONMENT VARIABLE
-const port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
+
+// promise chain commad 
+var sample = 'Ayon';
+var id;
+var learner;
+
+var init = function(){    
+    searchUserByName(sample);
+}
+
+var searchInList = function(res, name){
+    let temp = res;
+
+    if(temp && temp.length > 0){
+        for(let q = 0; q < temp.length; q++){
+            if(name.toLowerCase() === temp[q].learner_name.toLowerCase()){
+                id = temp[q].learner_id;
+                break;
+            }
+        }   
+    } else{
+        console.log('List not found!');    
+    }
+}
+
+var userFoundCheck = function(){
+    if(id){
+        console.log('USER found!');
+        console.log('User ID: ' + id);
+    } else{
+        console.log('USER not found!');    
+    }   
+}
+
+var searchUserByName = function(sample){
+    let options = {
+        method: 'GET',
+        uri: `http://localhost:${port}/learners`,
+        json: true // Automatically stringifies the body to JSON
+    };
+
+    rp(options).then(list => {
+        console.log('USER List found!');
+        searchInList(list, sample);    
+    }).then(() => {
+        userFoundCheck();         
+    }).catch(function (err) {
+        console.log(err);
+        console.log('List API failed!');
+    });
+}
+
+init();
